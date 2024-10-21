@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+
+echo "== Delete object"
+
+
+if [ -z "$1" ]; then
+    echo "Please provide a bucket name as first argument"
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    echo "Please provide a file key to be deleted as the second argument"
+    exit 1
+fi
+
+
+BUCKET_NAME=$1
+FILE_KEY=$2
+
+aws s3api delete-object \
+--bucket $BUCKET_NAME \
+--key $FILE_KEY

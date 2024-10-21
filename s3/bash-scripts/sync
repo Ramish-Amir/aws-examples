@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+echo "== Sync files"
+
+if [ -z "$1" ]; then
+    echo "Bucket name needed to sync files to"
+    exit 1
+fi
+
+BUCKET_NAME=$1
+FILE_PREFIX=${2:-files}
+FILES_DIRECTORY="./temp/"
+
+aws s3 sync $FILES_DIRECTORY s3://$BUCKET_NAME/$FILE_PREFIX
